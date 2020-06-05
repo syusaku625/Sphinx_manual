@@ -8,4 +8,4 @@ Sphinx マニュアル
    /chapter2/chapter2_index.rst
    /chapter3/chapter3_index.rst
    /chapter4/chapter4_index.rst
-
+   /chapter5/chapter5_index.rst
