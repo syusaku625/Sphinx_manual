@@ -85,7 +85,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../chapter2/chapter2_index.html">pdfの作成</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chapter3/chapter3_index.html">カスタマイズ</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="chapter4_index.html">Githubと連携してWebページを公開する</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">GithubからのWebページ公開</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GithubからのWebページ公開</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#githubpush">1. githubのリモートリポジトリにpush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conf-py">2. conf.pyに以下を追記</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#html-nojekyll">3. htmlディレクトリ内に.nojekyllファイルを作成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#branchgh-pages">4. branchをgh-pagesに切り替える</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#github">5. Githubの公開設定</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -154,9 +161,8 @@
             
   <div class="section" id="githubweb">
 <h1>GithubからのWebページ公開<a class="headerlink" href="#githubweb" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<ol class="arabic simple">
-<li><p>githubのリモートリポジトリにpush</p></li>
-</ol>
+<div class="section" id="githubpush">
+<h2>1. githubのリモートリポジトリにpush<a class="headerlink" href="#githubpush" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>以下を実行する．リポジトリ名はSphinx_manualとした．</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git init
 $ git add -A
@@ -165,31 +171,32 @@ $ git remote add origin https://github.com/syusaku625/Sphinx_manual.git
 $ git push -u origin master
 </pre></div>
 </div>
-<ol class="arabic simple" start="2">
-<li><p>conf.pyに以下を追記</p></li>
-</ol>
+</div>
+<div class="section" id="conf-py">
+<h2>2. conf.pyに以下を追記<a class="headerlink" href="#conf-py" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sphinx.ext.mathjax&#39;</span><span class="p">,</span> <span class="s1">&#39;sphinx.ext.todo&#39;</span><span class="p">,</span> <span class="s1">&#39;sphinx.ext.githubpages&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
-<li><p>htmlディレクトリ内に.nojekyllファイルを作成</p></li>
-</ol>
+</div>
+<div class="section" id="html-nojekyll">
+<h2>3. htmlディレクトリ内に.nojekyllファイルを作成<a class="headerlink" href="#html-nojekyll" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>これを作っておかないとcssが反映されない</p>
-<ol class="arabic simple" start="4">
-<li><p>branchをgh-pagesに切り替える</p></li>
-</ol>
+</div>
+<div class="section" id="branchgh-pages">
+<h2>4. branchをgh-pagesに切り替える<a class="headerlink" href="#branchgh-pages" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout -b gh-pages
 $ git commit -a -m &quot;Add .nojekyll&quot;
 $ git push origin gh-pages
 </pre></div>
 </div>
-<ol class="arabic simple" start="5">
-<li><p>Githubの公開設定</p></li>
-</ol>
+</div>
+<div class="section" id="github">
+<h2>5. Githubの公開設定<a class="headerlink" href="#github" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <div class="line-block">
 <div class="line">guihub の Sphinx_manual リポジトリの settings ページに GitHub Pages という項目があるので、</div>
 <div class="line">gh-pages ブランチを選択して save する．</div>
 <div class="line">上部に URL が表示されるので、そこにアクセスするとページが表示される．</div>
+</div>
 </div>
 </div>
 

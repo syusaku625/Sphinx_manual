@@ -2,6 +2,7 @@ GithubからのWebページ公開
 ========================================
 
 1. githubのリモートリポジトリにpush
+-----------------------------------------
 
 以下を実行する．リポジトリ名はSphinx_manualとした．
 
@@ -14,16 +15,19 @@ GithubからのWebページ公開
     $ git push -u origin master
 
 2. conf.pyに以下を追記
+-----------------------------------------------
 
 .. code-block ::
 
     +extensions = ['sphinx.ext.mathjax', 'sphinx.ext.todo', 'sphinx.ext.githubpages']
 
 3. htmlディレクトリ内に.nojekyllファイルを作成
+-----------------------------------------------------
 
 これを作っておかないとcssが反映されない
 
 4. branchをgh-pagesに切り替える
+---------------------------------------------------------
 
 .. code-block ::
 
@@ -32,6 +36,7 @@ GithubからのWebページ公開
     $ git push origin gh-pages
 
 5. Githubの公開設定
+-----------------------------------------------
 
 | guihub の Sphinx_manual リポジトリの settings ページに GitHub Pages という項目があるので、
 | gh-pages ブランチを選択して save する．
