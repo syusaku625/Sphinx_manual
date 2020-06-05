@@ -1,0 +1,19 @@
+==============================
+テーマの変更
+==============================
+
+1. インストール
+-------------------------------
+
+.. code-block ::
+    
+    pip install sphinx_rtd_theme
+
+2. conf.pyに以下を追加
+-------------------------------
+
+.. code-block ::
+
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]

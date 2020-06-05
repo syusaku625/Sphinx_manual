@@ -1,0 +1,38 @@
+Sphinxですべての目次をサイドバーに表示する
+===================================================
+
+1. 目次用テンプレートの作成
+--------------------------------------
+
+_templatesディレクトリ内にglobaltoc.htmlを作成する
+
+.. code-block :: 
+
+    <div id="toc" class="sidebarRow">
+    <h3><a href="http://docs.sphinx-users.jp/">Sphinxリファレンス</a></h3>
+
+    <h3><a href="{{ pathto(master_doc) }}">{{ _('Table Of Contents') }}</a></h3>
+    {%- if sphinx_version[:3] >= '1.2' %}
+    {{ toctree (maxdepth=2, collapse=False, includehidden=True) }}
+    {% else %}
+    {{ toctree(maxdepth=2, collapse=False) }}
+    {% endif %}
+    </div>
+
+2. conf.py の修正
+--------------------------------------------
+
+conf.py に以下のような記述を追加する。
+
+.. code-block ::
+
+    html_sidebars = {
+        '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'],
+    }
+
+3. make html を実行する
+----------------------------------------------
+
+.. code-block ::
+
+    $ make html
