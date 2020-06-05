@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ドキュメントビルダーの名前を消す &mdash; Sphinx_manual [1.0.0] ドキュメント</title>
+  <title>GithubからのWebページ公開 &mdash; Sphinx_manual [1.0.0] ドキュメント</title>
   
 
   
@@ -36,8 +36,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="ソースコード表示へのリンクを消す" href="3.3.html" />
-    <link rel="prev" title="Sphinxですべての目次をサイドバーに表示する" href="3.1.html" /> 
+    <link rel="prev" title="Githubと連携してWebページを公開する" href="chapter4_index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,13 +83,11 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../chapter1/chapter1_index.html">HTMLの作成</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chapter2/chapter2_index.html">pdfの作成</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="chapter3_index.html">カスタマイズ</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="3.1.html">Sphinxですべての目次をサイドバーに表示する</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ドキュメントビルダーの名前を消す</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3.3.html">ソースコード表示へのリンクを消す</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter3/chapter3_index.html">カスタマイズ</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="chapter4_index.html">Githubと連携してWebページを公開する</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GithubからのWebページ公開</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../chapter4/chapter4_index.html">Githubと連携してWebページを公開する</a></li>
 </ul>
 
             
@@ -136,9 +133,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="chapter3_index.html">カスタマイズ</a> &raquo;</li>
+          <li><a href="chapter4_index.html">Githubと連携してWebページを公開する</a> &raquo;</li>
         
-      <li>ドキュメントビルダーの名前を消す</li>
+      <li>GithubからのWebページ公開</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,14 +152,44 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>ドキュメントビルダーの名前を消す<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<div class="line-block">
-<div class="line">ページのフッターのところにある「このドキュメントはSphinxで作成しました」という文言を消す．</div>
-<div class="line">ドキュメントルートディレクトリのconf.pyに、下記を追記．</div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">html_show_sphinx</span> <span class="o">=</span> <span class="kc">False</span>
+  <div class="section" id="githubweb">
+<h1>GithubからのWebページ公開<a class="headerlink" href="#githubweb" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<ol class="arabic simple">
+<li><p>githubのリモートリポジトリにpush</p></li>
+</ol>
+<p>以下を実行する．リポジトリ名はSphinx_manualとした．</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git init
+$ git add -A
+$ git commit -m &quot;first commit&quot;
+$ git remote add origin https://github.com/syusaku625/Sphinx_manual.git
+$ git push -u origin master
 </pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>conf.pyに以下を追記</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sphinx.ext.mathjax&#39;</span><span class="p">,</span> <span class="s1">&#39;sphinx.ext.todo&#39;</span><span class="p">,</span> <span class="s1">&#39;sphinx.ext.githubpages&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>htmlディレクトリ内に.nojekyllファイルを作成</p></li>
+</ol>
+<p>これを作っておかないとcssが反映されない</p>
+<ol class="arabic simple" start="4">
+<li><p>branchをgh-pagesに切り替える</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git checkout -b gh-pages
+$ git commit -a -m &quot;Add .nojekyll&quot;
+$ git push origin gh-pages
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Githubの公開設定</p></li>
+</ol>
+<div class="line-block">
+<div class="line">guihub の Sphinx_manual リポジトリの settings ページに GitHub Pages という項目があるので、</div>
+<div class="line">gh-pages ブランチを選択して save する．</div>
+<div class="line">上部に URL が表示されるので、そこにアクセスするとページが表示される．</div>
 </div>
 </div>
 
@@ -174,10 +201,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="3.3.html" class="btn btn-neutral float-right" title="ソースコード表示へのリンクを消す" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="3.1.html" class="btn btn-neutral float-left" title="Sphinxですべての目次をサイドバーに表示する" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="chapter4_index.html" class="btn btn-neutral float-left" title="Githubと連携してWebページを公開する" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
